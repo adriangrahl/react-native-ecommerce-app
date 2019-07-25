@@ -1,0 +1,59 @@
+{
+  "name": "eCommerce",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "react-native start",
+    "test": "jest",
+    "lint": "eslint .",
+    "postinstall": "npx jetify",
+    "react-devtool": "react-devtools"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "jetifier": "^1.6.1",
+    "json-server": "^0.15.0",
+    "prop-types": "^15.7.2",
+    "react": "16.8.6",
+    "react-native": "0.60.0",
+    "react-native-gesture-handler": "1.0.5",
+    "react-native-iphone-x-helper": "^1.2.1",
+    "react-native-vector-icons": "^6.6.0",
+    "react-navigation": "^3.11.0",
+    "react-redux": "^7.1.0",
+    "reactotron-react-native": "3.2.2",
+    "reactotron-redux": "3.1.0",
+    "reactotron-redux-saga": "4.2.2",
+    "redux": "^4.0.4",
+    "redux-saga": "^1.0.5",
+    "reduxsauce": "^1.1.0",
+    "seamless": "^1.4.1",
+    "seamless-immutable": "^7.1.4",
+    "styled-components": "^4.3.2"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.4",
+    "@babel/runtime": "^7.5.4",
+    "@react-native-community/eslint-config": "^0.0.5",
+    "babel-eslint": "^10.0.2",
+    "babel-jest": "^24.8.0",
+    "babel-plugin-root-import": "^6.2.0",
+    "eslint": "^5.16.0",
+    "eslint-config-airbnb": "^17.1.1",
+    "eslint-config-prettier": "^6.0.0",
+    "eslint-import-resolver-babel-plugin-root-import": "^1.1.1",
+    "eslint-plugin-import": "^2.18.0",
+    "eslint-plugin-jsx-a11y": "^6.2.3",
+    "eslint-plugin-prettier": "^3.1.0",
+    "eslint-plugin-react": "^7.14.2",
+    "eslint-plugin-react-native": "^3.7.0",
+    "jest": "^24.8.0",
+    "metro-react-native-babel-preset": "^0.55.0",
+    "prettier": "^1.18.2",
+    "react-devtools": "^3.6.1",
+    "react-test-renderer": "16.8.6"
+  },
+  "jest": {
+    "preset": "react-native"
+  }
+}
