@@ -35,7 +35,7 @@ const Routes = createBottomTabNavigator(
       activeTintColor: colors.primary,
       inactiveTintColor: colors.light,
       style: {
-        borderTopWidth: 1,
+        borderTopWidth: 0,
         backgroundColor: colors.whiteTransparent,
       },
     },

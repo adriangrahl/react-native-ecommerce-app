@@ -2,7 +2,6 @@ import styled from 'styled-components/native';
 import { colors, metrics } from '~/styles';
 
 export const Container = styled.View`
-  border: 1px solid blue;
   justify-content: center;
   align-items: center;
 `;

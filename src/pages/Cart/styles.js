@@ -27,11 +27,11 @@ export const CartFlatList = styled.FlatList.attrs({
   //   marginBottom: 20,
   // },
 })`
-  border: 1px solid red;
+  /* border: 1px solid red; */
 `;
 
 export const SubTotal = styled.View`
-  border: 1px solid blue;
+  /* border: 1px solid blue; */
   height: 100px;
   padding: ${metrics.basePadding}px;
   align-items: center;

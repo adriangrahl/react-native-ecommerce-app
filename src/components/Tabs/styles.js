@@ -17,8 +17,11 @@ export const TabsContainer = styled.ScrollView.attrs({
 })``;
 
 export const TabItem = styled.View`
-  padding: 0 10px;
-  border: 1px solid red;
+  margin: 0 10px;
+  flex: 1;
+  padding-top: 3px;
+  border-bottom-width: ${props => (props.selected ? 3 : 0)};
+  border-bottom-color: ${colors.white};
 `;
 
 export const TabText = styled.Text`

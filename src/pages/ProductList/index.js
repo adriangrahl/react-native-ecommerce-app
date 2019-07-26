@@ -1,81 +1,37 @@
 import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
+import PropTypes from 'prop-types';
 
-import { NavigationEvents } from 'react-navigation';
+// import { NavigationEvents } from 'react-navigation';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
 import Header from '~/components/Header';
 import Tabs from '~/components/Tabs';
 import ProductItem from './ProductItem';
 
 import { Container, ProductFlatList } from './styles';
+import ProductsActions from '~/store/ducks/products';
 
-const products = [
-  {
-    id: 1,
-    name: 'Camiseta Hyperas Preta',
-    brand: 'Quiksilver',
-    image:
-      'https://t-static.dafiti.com.br/czCvp3wBNPfehf7omYZfJacnxPY=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fquiksilver-camiseta-quiksilver-hyperas-preta-8710-7136243-1-product.jpg',
-    price: 49.99,
-  },
-  {
-    id: 2,
-    name: 'Camiseta Double Tap Preta',
-    brand: 'Quiksilver',
-    image:
-      'https://t-static.dafiti.com.br/EpEXepU-tSbgo6ZMl4Y5BOdjelw=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fquiksilver-camiseta-quiksilver-double-tap-preta-7115-8165043-1-product.jpg',
-    price: 59.99,
-  },
-  {
-    id: 3,
-    name: 'Camiseta Logo Azul',
-    brand: 'Red Bull',
-    image:
-      'https://t-static.dafiti.com.br/aC9871vKWfL3bDgbhLx5sFLa7xs=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fred-bull-camiseta-red-bull-logo-azul-0272-7714033-1-product.jpg',
-    price: 54.99,
-  },
-  {
-    id: 4,
-    name: 'Camiseta Primo Tipper',
-    brand: 'Rip Curl',
-    image:
-      'https://t-static.dafiti.com.br/weG0u9eKZ4KBV-G0XFOQ5hoY4eI=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2frip-curl-camiseta-rip-curl-primo-tipper-preto-8138-3441052-1-product.jpg',
-    price: 39.99,
-  },
-  {
-    id: 5,
-    name: 'Camiseta Logo Azul',
-    brand: 'Red Bull',
-    image:
-      'https://t-static.dafiti.com.br/aC9871vKWfL3bDgbhLx5sFLa7xs=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fred-bull-camiseta-red-bull-logo-azul-0272-7714033-1-product.jpg',
-    price: 54.99,
-  },
-  {
-    id: 6,
-    name: 'Camiseta Primo Tipper',
-    brand: 'Rip Curl',
-    image:
-      'https://t-static.dafiti.com.br/weG0u9eKZ4KBV-G0XFOQ5hoY4eI=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2frip-curl-camiseta-rip-curl-primo-tipper-preto-8138-3441052-1-product.jpg',
-    price: 39.99,
-  },
-];
-
-/**
- * {
-    id: 1,
-    name: 'Camiseta Hyperas Preta',
-    brand: 'Quiksilver',
-    image:
-      'https://t-static.dafiti.com.br/czCvp3wBNPfehf7omYZfJacnxPY=/fit-in/427x620/dafitistatic-a.akamaihd.net%2fp%2fquiksilver-camiseta-quiksilver-hyperas-preta-8710-7136243-1-product.jpg',
-    price: 49.99,
-  },
- */
-
-export default class ProductList extends Component {
-  componentDidMount() {}
-
-  loadProducts = () => {
-    // TODO: refresh products
+class ProductList extends Component {
+  static propTypes = {
+    products: PropTypes.shape({
+      data: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.number,
+          name: PropTypes.string,
+          brand: PropTypes.string,
+          image: PropTypes.string,
+          price: PropTypes.number,
+        }),
+      ),
+      loading: PropTypes.bool,
+    }).isRequired,
+    navigation: PropTypes.shape({
+      navigate: PropTypes.func,
+    }).isRequired,
   };
+
+  componentDidMount() {}
 
   handleDetails = (item) => {
     const { navigation } = this.props;
@@ -87,7 +43,11 @@ export default class ProductList extends Component {
   );
 
   render() {
-    const loading = false; // this.state...
+    const {
+      products: { loading, data },
+    } = this.props;
+
+    console.tron.log('loading, data:', loading, data);
 
     return (
       <Container>
@@ -96,16 +56,28 @@ export default class ProductList extends Component {
         {loading ? (
           <ActivityIndicator />
         ) : (
-          <ProductFlatList
-            data={products}
-            keyExtractor={item => String(item.id)}
-            renderItem={item => this.renderListItem(item, this.handleDetails)}
-            refresh={this.loadProducts}
-            numColumns={2}
-            // refreshing={false}
-          />
+          !!data && (
+            <ProductFlatList
+              data={data}
+              keyExtractor={item => String(item.id)}
+              renderItem={item => this.renderListItem(item, this.handleDetails)}
+              numColumns={2}
+              refreshing={loading}
+            />
+          )
         )}
       </Container>
     );
   }
 }
+
+const mapStateToProps = state => ({
+  products: state.products,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(ProductsActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(ProductList);
