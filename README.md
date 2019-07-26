@@ -2,6 +2,10 @@
 
 **Current state**
 
+![](current-state.JPG)
+
+**First look**
+
 ![](ecommerce-first-look.JPG)
 
 ## Installing
