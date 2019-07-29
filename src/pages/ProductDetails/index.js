@@ -1,4 +1,10 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types';
+
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+
+import CartActions from '~/store/ducks/cart';
 
 import Header from '~/components/Header';
 import {
@@ -14,8 +20,18 @@ import {
   ButtonText,
 } from './styles';
 
-export default class ProductDetails extends Component {
-  componentDidMount() {}
+class ProductDetails extends Component {
+  static propTypes = {
+    addProduct: PropTypes.func.isRequired,
+    navigation: PropTypes.shape({
+      getParam: PropTypes.func,
+    }).isRequired,
+  };
+
+  handleAddToCart = (item) => {
+    const { addProduct } = this.props;
+    addProduct(item);
+  };
 
   render() {
     const { navigation } = this.props;
@@ -38,7 +54,7 @@ $
             </Price>
           </Info>
           <ButtonContainer>
-            <ButtonAdd onPress={() => {}}>
+            <ButtonAdd onPress={() => this.handleAddToCart(item)}>
               <ButtonText>Add to Cart</ButtonText>
             </ButtonAdd>
           </ButtonContainer>
@@ -47,3 +63,10 @@ $
     );
   }
 }
+
+const mapDispatchToProps = dispatch => bindActionCreators(CartActions, dispatch);
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(ProductDetails);

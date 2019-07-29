@@ -31,8 +31,6 @@ class ProductList extends Component {
     }).isRequired,
   };
 
-  componentDidMount() {}
-
   handleDetails = (item) => {
     const { navigation } = this.props;
     navigation.navigate('ProductDetails', { item });
@@ -46,8 +44,6 @@ class ProductList extends Component {
     const {
       products: { loading, data },
     } = this.props;
-
-    console.tron.log('loading, data:', loading, data);
 
     return (
       <Container>
