@@ -25,12 +25,14 @@ class ProductDetails extends Component {
     addProduct: PropTypes.func.isRequired,
     navigation: PropTypes.shape({
       getParam: PropTypes.func,
+      navigate: PropTypes.func,
     }).isRequired,
   };
 
   handleAddToCart = (item) => {
-    const { addProduct } = this.props;
+    const { addProduct, navigation } = this.props;
     addProduct(item);
+    navigation.navigate('Cart');
   };
 
   render() {

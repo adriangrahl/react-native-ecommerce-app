@@ -39,7 +39,7 @@ const Routes = createBottomTabNavigator(
         backgroundColor: colors.whiteTransparent,
       },
     },
-    initialRouteName: 'Cart',
+    initialRouteName: 'Home',
   },
 );
 

@@ -11,7 +11,13 @@ import CartItem from './CartItem';
 
 import Header from '~/components/Header';
 import {
-  Container, Content, CartFlatList, SubTotal, Text, Amount,
+  Container,
+  Content,
+  CartFlatList,
+  SubTotal,
+  Text,
+  Amount,
+  EmptyCartContainer,
 } from './styles';
 
 const TabIcon = ({ tintColor }) => <Icon name="shopping-cart" size={20} color={tintColor} />;
@@ -64,7 +70,7 @@ class Cart extends Component {
       <Container>
         <Header title="Cart" />
         <Content>
-          {!!data && (
+          { data && data.length ? (
             <CartFlatList
               data={data}
               keyExtractor={item => String(item.id)}
@@ -72,6 +78,10 @@ class Cart extends Component {
               refresh={this.refresh}
               numColumns={1}
             />
+          ) : (
+            <EmptyCartContainer>
+              <Text>Empty Cart</Text>
+            </EmptyCartContainer>
           )}
           <SubTotal>
             <Text>Total</Text>

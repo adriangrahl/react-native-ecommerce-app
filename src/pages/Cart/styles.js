@@ -48,3 +48,9 @@ export const Amount = styled.Text`
   font-weight: bold;
   color: ${colors.turquoise};
 `;
+
+export const EmptyCartContainer = styled.View`
+  flex: 1;
+  align-items: center;
+  justify-content: center;
+`;

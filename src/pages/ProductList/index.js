@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { ActivityIndicator } from 'react-native';
 import PropTypes from 'prop-types';
 
-// import { NavigationEvents } from 'react-navigation';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import Header from '~/components/Header';
@@ -40,6 +39,11 @@ class ProductList extends Component {
     <ProductItem item={item} handleDetails={handleDetails} />
   );
 
+  refresh = () => {
+    const { currentCategory, loadProductsRequest } = this.props;
+    loadProductsRequest(currentCategory);
+  };
+
   render() {
     const {
       products: { loading, data },
@@ -59,6 +63,7 @@ class ProductList extends Component {
               renderItem={item => this.renderListItem(item, this.handleDetails)}
               numColumns={2}
               refreshing={loading}
+              onRefresh={this.refresh}
             />
           )
         )}
@@ -69,6 +74,7 @@ class ProductList extends Component {
 
 const mapStateToProps = state => ({
   products: state.products,
+  currentCategory: state.categories.selected,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(ProductsActions, dispatch);
