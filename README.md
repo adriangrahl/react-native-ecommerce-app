@@ -1,8 +1,8 @@
 # e-Commerce simple app (React Native, Redux and Saga)
 
-**Current state**
+**App overview**
 
-![](current-state.JPG)
+![](overview.gif)
 
 **First look**
 
@@ -16,7 +16,7 @@ Run **yarn** command into the project's tree to install all dependencies
 
 Run **yarn add global json-server**
 
-Open another console/terminal tab and run **json-server server.json -p 3001 -w -d 500** to serve locally the mapped songs.
+Open another console/terminal tab and run **json-server server.json** to serve some products locally as a backend would.
 
 Run **yarn start**
 
